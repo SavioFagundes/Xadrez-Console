@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tabuleiro
+namespace xadrez_console.xadrez
 {
-    internal class TabuleiroExceptions : Exception
+    internal class PosicaoXadrez
     {
-        public TabuleiroExceptions(string msg) : base(msg) { }
     }
 }
