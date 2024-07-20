@@ -7,7 +7,7 @@ using xadrez_console.tabuleiro;
 
 namespace tabuleiro
 {
-    internal class Peca
+    internal abstract class Peca
     {
         public Posicao Posicao { get; set; }
         public Cor Cor { get; protected set; }
@@ -30,6 +30,10 @@ namespace tabuleiro
         public void incrementarQteMovimentos()
         {
             qteMovimentos++;
+        }
+        public abstract bool[,] movimentosPossiveis()
+        {
+
         }
     }
 }

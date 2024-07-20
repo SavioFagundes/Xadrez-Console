@@ -9,13 +9,19 @@ namespace tabuleiro
     internal class Posicao
     {
 
-        public int Linhas { get; set; }
-        public int Colunas { get; set; }
+        public int linha { get; set; }
+        public int coluna { get; set; }
 
-        public Posicao(int linhas, int colunas)
+        public Posicao(int linha, int coluna)
         {
-            Linhas = linhas;
-            Colunas = colunas;
+            this.linha = linha;
+            this.coluna = coluna;
+        }
+
+        public void definirValores(int linha, int coluna)
+        {
+            this.linha = linha;
+            this.coluna = coluna;
         }
     }
 }
