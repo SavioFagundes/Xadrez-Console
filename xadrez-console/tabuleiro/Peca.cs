@@ -7,7 +7,7 @@ using xadrez_console.tabuleiro;
 
 namespace tabuleiro
 {
-    internal abstract class Peca
+     abstract class Peca
     {
         public Posicao Posicao { get; set; }
         public Cor Cor { get; protected set; }
@@ -21,19 +21,27 @@ namespace tabuleiro
             this.tab = tab;
             qteMovimentos = 0;
         }
-
-        public Peca(Tabuleiro tab, Cor cor)
+        public bool existeMovimentosPossiveis()
         {
-            this.tab = tab;
-            Cor = cor;
+            bool[,] mat = MovimentosPossiveis();
+            for(int i = 0; i < tab.linhas; i++)
+            {
+                for(int j = 0; j < tab.colunas; j++)
+                {
+                    if (mat[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
+
         public void incrementarQteMovimentos()
         {
             qteMovimentos++;
         }
-        public abstract bool[,] movimentosPossiveis()
-        {
-
-        }
+        public abstract bool[,] MovimentosPossiveis();
+        
     }
 }
