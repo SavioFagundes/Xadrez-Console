@@ -36,8 +36,11 @@ namespace tabuleiro
             }
             return false;
         }
-
-        public void incrementarQteMovimentos()
+        public bool PodeMoverPara(Posicao pos)
+        {
+            return MovimentosPossiveis()[pos.linha, pos.coluna];
+        }
+        public void incrementarMovimentos()
         {
             qteMovimentos++;
         }
