@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using tabuleiro;
-
-namespace tabuleiro
+﻿namespace tabuleiro
 {
-    internal class Tabuleiro
+    class Tabuleiro
     {
+
         public int linhas { get; set; }
         public int colunas { get; set; }
         private Peca[,] pecas;
@@ -24,26 +18,28 @@ namespace tabuleiro
         {
             return pecas[linha, coluna];
         }
+
         public Peca peca(Posicao pos)
         {
-            return pecas[pos.Linhas, pos.Colunas];
+            return pecas[pos.linha, pos.coluna];
         }
+
         public bool existePeca(Posicao pos)
         {
-            posicaoValida(pos);
+            validarPosicao(pos);
             return peca(pos) != null;
         }
 
-
         public void colocarPeca(Peca p, Posicao pos)
         {
-            if(existePeca(pos))
+            if (existePeca(pos))
             {
-                throw new TabuleiroExceptions("Já existe uma peça nessa posição");
+                throw new TabuleiroExceptions("Já existe uma peça nessa posição!");
             }
-            pecas[pos.Linhas, pos.Colunas] = p;
-            p.Posicao = pos;
+            pecas[pos.linha, pos.coluna] = p;
+            p.posicao = pos;
         }
+
         public Peca retirarPeca(Posicao pos)
         {
             if (peca(pos) == null)
@@ -51,23 +47,25 @@ namespace tabuleiro
                 return null;
             }
             Peca aux = peca(pos);
-            aux.Posicao = null;
-            pecas[pos.Linhas, pos.Colunas] = null;
+            aux.posicao = null;
+            pecas[pos.linha, pos.coluna] = null;
             return aux;
         }
+
         public bool posicaoValida(Posicao pos)
         {
-            if (pos.Linhas < 0 || pos.Linhas >= linhas || pos.Colunas < 0 || pos.Colunas >= colunas)
+            if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas)
             {
                 return false;
             }
             return true;
         }
+
         public void validarPosicao(Posicao pos)
         {
             if (!posicaoValida(pos))
             {
-                throw new TabuleiroExceptions("Posicao Inválida !");
+                throw new TabuleiroExceptions("Posição inválida!");
             }
         }
     }

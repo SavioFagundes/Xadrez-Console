@@ -1,34 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using xadrez_console.tabuleiro;
+﻿using xadrez_console.tabuleiro;
 
 namespace tabuleiro
 {
-     abstract class Peca
+    abstract class Peca
     {
-        public Posicao Posicao { get; set; }
-        public Cor Cor { get; protected set; }
+
+        public Posicao posicao { get; set; }
+        public Cor cor { get; protected set; }
         public int qteMovimentos { get; protected set; }
         public Tabuleiro tab { get; protected set; }
 
-        public Peca(Posicao posicao, Cor cor, Tabuleiro tab)
+        public Peca(Tabuleiro tab, Cor cor)
         {
-            Posicao = null;
-            Cor = cor;
+            this.posicao = null;
             this.tab = tab;
-            qteMovimentos = 0;
+            this.cor = cor;
+            this.qteMovimentos = 0;
         }
+
+        public void incrementarQteMovimentos()
+        {
+            qteMovimentos++;
+        }
+
+        public void decrementarQteMovimentos()
+        {
+            qteMovimentos--;
+        }
+
         public bool existeMovimentosPossiveis()
         {
-            bool[,] mat = MovimentosPossiveis();
-            for(int i = 0; i < tab.linhas; i++)
+            bool[,] mat = movimentosPossiveis();
+            for (int i = 0; i < tab.linhas; i++)
             {
-                for(int j = 0; j < tab.colunas; j++)
+                for (int j = 0; j < tab.colunas; j++)
                 {
-                    if (mat[i,j])
+                    if (mat[i, j])
                     {
                         return true;
                     }
@@ -36,15 +43,12 @@ namespace tabuleiro
             }
             return false;
         }
-        public bool PodeMoverPara(Posicao pos)
+
+        public bool movimentoPossivel(Posicao pos)
         {
-            return MovimentosPossiveis()[pos.linha, pos.coluna];
+            return movimentosPossiveis()[pos.linha, pos.coluna];
         }
-        public void incrementarMovimentos()
-        {
-            qteMovimentos++;
-        }
-        public abstract bool[,] MovimentosPossiveis();
-        
+
+        public abstract bool[,] movimentosPossiveis();
     }
 }
