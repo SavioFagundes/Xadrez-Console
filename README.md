@@ -1,1 +1,1 @@
-# xadrez-console
+Desenvolvi esse projeto que é um jogo de Xadrez para aumentar minhas habilidades com C# e aprender sobre xadrez.
